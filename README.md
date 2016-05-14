@@ -1,14 +1,36 @@
 
 lightproxy is a lightweight HTTP reverse proxy written in Golang aims
-to accelerate client requesting. It caches web resources in main memory and 
-implements a non-blocking design, so providing lightning fast speed for you.
+to accelerate responsing. It caches web resources in main memory and 
+implements a non-blocking design, so providing lightning fast speed.
 
 lightproxy takes a rather conservative strategy in deciding whether 
-to cache a certain resources, rules includes:
+to cache a certain resources, rules including:
 
 1. requests of types other than GET are never cached
 2. URLs containing query strings are not cached
-3. if Set-Cookie was found in response's header, it is not cached
+3. if a Set-Cookie header was found in response, the corresponding URL is not cached
+
+Installation
+-------------
+clone the code:
+> git clone https://github.com/wyage/lightproxy.git
+
+build the code:
+> cd lightproxy
+
+on Windows:
+> build-win.bat
+
+on Unix-alike:
+> ./build.sh
+
+Before you start the build step, please make sure the go executable file 
+is accessible.
+
+Then you need to edit the <code>bin/config.json</code>, point the value of "BackHost" to your own web address.
+
+After this, you can start it, run <code>bin/lightproxy.exe</code> on windows or 
+<code>bin/lightproxy</code> on Unix.
 
 Apache Bench testing
 -------------
